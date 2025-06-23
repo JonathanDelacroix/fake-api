@@ -11,8 +11,7 @@ body {
   color: #000;
 }
 
-.custom-img {
-  height: 200px;
-  width: 100%;
-  object-fit: contain;
+.card-img-top {
+    height:250px;
+    object-fit: contain;
 }

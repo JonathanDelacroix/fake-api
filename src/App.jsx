@@ -13,17 +13,17 @@ function App() {
 
     fetchProducts();
   }, []);
-console.log(products);
+
   return (
     <Container className="mt-4">
-      <Row>
+      <Row className="gy-3">
         {products.map(p => (
           <Col key={p.id} md={3}>
-            <Card>
+            <Card className="h-100">
               <Card.Img
+                variant='top'
                 src={p.image}
                 alt={p.title}
-                className="custom-img"
               />
               <Card.Body>
                 <Card.Title>{p.title}</Card.Title>
