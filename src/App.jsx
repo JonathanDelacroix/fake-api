@@ -2,9 +2,6 @@ import { useEffect, useState } from 'react';
 import { Card, Container, Row, Col } from 'react-bootstrap';
 
 function App() {
-
-  // const response = await fetch ("https://fakestoreapi.com/products");
-  // const products = await response.json();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -17,7 +14,6 @@ function App() {
     fetchProducts();
   }, []);
 
-  console.log(products);
   return (
     <Container className="mt-4">
       <Row className="justify-content-center">
