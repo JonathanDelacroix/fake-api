@@ -13,17 +13,17 @@ function App() {
 
     fetchProducts();
   }, []);
-
+console.log(products);
   return (
     <Container className="mt-4">
-      <Row className="justify-content-center">
+      <Row>
         {products.map(p => (
-          <Col key={p.id} md={3} className="mb-4 d-flex flex-column">
-            <Card className="flex-grow-1">
+          <Col key={p.id} md={3}>
+            <Card>
               <Card.Img
-                variant="top"
                 src={p.image}
-                style={{ height: '200px', objectFit: 'contain' }}
+                alt={p.title}
+                className="custom-img"
               />
               <Card.Body>
                 <Card.Title>{p.title}</Card.Title>
