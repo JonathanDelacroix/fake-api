@@ -8,6 +8,7 @@ function App() {
 
   useEffect(() => {
     async function fetchProducts() {
+      setLoading(true);
       try {
         const response = await fetch("https://fakestoreapi.com/products");
         if (!response.ok) throw new Error(`Erreur HTTP: ${response.statusText ? response.statusText + ' - ' : ''}${response.status}`);
@@ -41,7 +42,7 @@ function App() {
         }),
       });
 
-      if (!response.ok) throw new Error("Erreur lors de l'ajout du produit");
+      if (!response.ok) throw new Error(`Erreur HTTP: ${response.statusText ? response.statusText + ' - ' : ''}${response.status}`);
 
       const data = await response.json();
       alert(`Le produit avec l'id ${data.id} a été créé`);
@@ -65,7 +66,7 @@ function App() {
         }),
       });
 
-      if (!response.ok) throw new Error("Erreur lors de la modification du produit");
+      if (!response.ok) throw new Error(`Erreur HTTP: ${response.statusText ? response.statusText + ' - ' : ''}${response.status}`);
 
       const data = await response.json();
       alert(`Le produit avec l'id ${data.id} a été modifié`);
@@ -83,7 +84,7 @@ function App() {
         body: JSON.stringify({ price: 5 }),
       });
 
-      if (!response.ok) throw new Error("Erreur lors de la mise à jour du prix");
+      if (!response.ok) throw new Error(`Erreur HTTP: ${response.statusText ? response.statusText + ' - ' : ''}${response.status}`);
 
       const data = await response.json();
       alert(`Le prix du produit avec l'id ${data.id} a été modifié`);
@@ -99,7 +100,7 @@ function App() {
         method: 'DELETE',
       });
 
-      if (!response.ok) throw new Error("Erreur lors de la suppression du produit");
+      if (!response.ok) throw new Error(`Erreur HTTP: ${response.statusText ? response.statusText + ' - ' : ''}${response.status}`);
 
       const data = await response.json();
       alert(`Le produit avec l'id ${data.id} a été supprimé`);
