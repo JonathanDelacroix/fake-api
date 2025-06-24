@@ -3,12 +3,11 @@ import { Card, Container, Row, Col, Button } from 'react-bootstrap';
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchProducts() {
-      setLoading(true);
       try {
         const response = await fetch("https://fakestoreapi.com/products");
         if (!response.ok) throw new Error(`Erreur HTTP: ${response.statusText ? response.statusText + ' - ' : ''}${response.status}`);
@@ -22,8 +21,7 @@ function App() {
       }
     }
 
-    if (error) return <p>{error}</p>;
-    if (loading) return <p>Chargement...</p>;
+
 
     fetchProducts();
   }, []);
@@ -110,10 +108,11 @@ function App() {
     }
   };
 
+  if (error) return <p>{error}</p>;
+  if (loading) return <p>Chargement...</p>;
+
   return (
     <Container className="mt-4">
-      {loading && <div>Chargement...</div>}
-      {error && <div>Erreur : {error}</div>}
 
       <Button variant="success" onClick={handleAddProduct} className="mb-4">
         Ajouter un produit
