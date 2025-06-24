@@ -8,20 +8,21 @@ function App() {
 
   useEffect(() => {
     async function fetchProducts() {
-      setLoading(true);
-      setError(null);
       try {
         const response = await fetch("https://fakestoreapi.com/products");
-        if (!response.ok) throw new Error("Erreur lors de la récupération des produits");
+        if (!response.ok) throw new Error(`Erreur HTTP: ${response.statusText ? response.statusText + ' - ' : ''}${response.status}`);
         const data = await response.json();
         setProducts(data);
       } catch (err) {
-        setError(err.message);
-        console.error(err);
+        setError("Une erreur est survenue lors de la récupération des produits.");
+        console.error(err.message);
       } finally {
         setLoading(false);
       }
     }
+
+    if (error) return <p>{error}</p>;
+    if (loading) return <p>Chargement...</p>;
 
     fetchProducts();
   }, []);
